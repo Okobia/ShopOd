@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=divice-width, initial-scale=1.0">
+	<title> Product Details Page</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+	
+<div class="container">
+			<div class="navbar">
+		<div class="logo">
+			<a href="broker.html"><img src="images/logo.jpeg" width="125px"></a>
+		</div>
+		<nav>
+			<ul id="menuItems">
+				<li><a href="broker.html">Home</a></li>
+				<li><a href="">About</a></li>
+				<li><a href="product.html">Product</a></li>
+				<li><a href="">Contact</a></li>
+				<li><a href="account.html">Account</a></li>
+			</ul>
+		</nav>
+		<a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+		<img src="images/menu_icon-removebg-preview.png" class="menu-icon" onclick = "menutoggle()">
+	</div>	
+</div>
+
+<!-----cart Iteams-------->
+<div class="small-container cart-page">
+    <table id="cart">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="images/14dfab05213d78466a50926eaadbcee4d1423413.jpeg">
+                    <div>
+                         <p>LFW TANK Top</p>
+                <small>Price:&#8358;29,999 </small>
+                <br>
+                <a href="" class="remove-link">Remove</a>
+                    </div>
+                </div>
+            
+               
+            </td>
+            <td><input type="number" value="1"></td>
+            <td>&#8358;29,999</td>
+        </tr>
+         <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="images/Prada Re-Nylon.jpg">
+                    <div>
+                         <p>Prada Re-Nylon</p>
+                <small>Price:&#8358;29,999 </small>
+                <br>
+                <a href="" class="remove-link">Remove</a>
+                    </div>
+                </div>
+            
+               
+            </td>
+            <td><input type="number" value="1"></td>
+            <td>&#8358;29,999</td>
+        </tr>
+         <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="images/Adida.jpg">
+                    <div>
+                         <p>Adida</p>
+                <small>Price:&#8358;29,999</small>
+                <br>
+                <a href="" class="remove-link">Remove</a>
+                    </div>
+                </div>
+            
+               
+            </td>
+            <td><input type="number" value="1"></td>
+            <td>$60.999</td>
+        </tr>
+    </table>
+
+    <div class="Total-price">
+        <table>
+            <tr>
+                <td> Subtotal</td>
+                <td><span id="subtotal">0</span> &#8358;89.997 </td>
+            </tr>
+            <tr>
+                <td> Tax (10%)</td>
+                <td><span id="tax">0</span></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td><span id="total">0</span> &#8358;119,000 </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!------footer------>
+
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-mac-1">
+				<h3>Download Our App</h3>
+				<p>Download For Andriod and ios mobile phone</p>
+				<div class="app-logo">
+					<img src="images/prevvv.png">
+					<img src="images/download-removebg-preview.png">
+				</div>
+			</div>
+			<div class="footer-mac-2">
+				<img src="images/WhatsApp_Image_2025-10-04_at_5.31.47_PM-removebg-preview.png" width="120px">
+				<p>Our mission is to ensure that the pleasure and benefits of sports are shared widely and sustainably across communities</p>
+			</div>
+			<div class="footer-mac-3">
+				<h3>Usefull Links</h3>
+				<ul>
+					<li>Coupons</li>
+					<li>Blog Post</li>
+					<li>Return Policy</li>
+					<li>Join Our affiliate</li>
+				</ul>
+			</div>
+			<div class="footer-mac-4">
+				<h3>Follow Us</h3>
+				<ul>
+					<li>Facebook</li>
+					<li>Intergram</li>
+					<li>X</li>
+					<li>Youtube</li>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<P class="Copyright">Copyright 2025</P>
+	</div>
+</div>
+
+
+
+
+<script>
+  // Function to update subtotal, tax, and total
+  function updateTotals() {
+    let prices = document.querySelectorAll(".price");
+    let subtotal = 0;
+
+    // Add all remaining item prices
+    prices.forEach(price => {
+      subtotal += parseFloat(price.textContent);
+    });
+
+    // Calculate tax (example 10%)
+    let tax = subtotal * 0.1;
+    let total = subtotal + tax;
+
+    // Update the displayed numbers
+    document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+    document.getElementById("tax").textContent = tax.toFixed(2);
+    document.getElementById("total").textContent = total.toFixed(2);
+  }
+
+  // Function to remove a cart item
+  function setupRemoveButtons() {
+    const removeLinks = document.querySelectorAll(".remove-link");
+
+    removeLinks.forEach(link => {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const row = this.closest("tr");
+        row.remove(); // remove the item row
+        updateTotals(); // recalculate totals
+      });
+    });
+  }
+
+  // Run on page load
+  setupRemoveButtons();
+  updateTotals();
+</script>
+
+
+
+
+<!--------js for toggle menu------------->
+<script>
+	var menuItems = document.getElementById("menuItems");
+
+	menuItems.style.maxHeight= "0px";
+
+	function menutoggle(){
+		if(menuItems.style.maxHeight=="0px")
+		{
+			menuItems.style.maxHeight= "200px"
+		}
+		else
+		{
+			menuItems.style.maxHeight= "0px"
+		}
+		
+	}
+</script>
+
+
+
+</body>
+</html>
